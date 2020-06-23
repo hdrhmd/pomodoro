@@ -1,3 +1,5 @@
+const totalPerDay = 10;
+
 const Mode = {
     POMODORO: 'pomodoro',
     SHORT_BREAK: 'short-break',
@@ -13,6 +15,7 @@ const StorageKey = {
     MODE: 'pomodoro-mode',
     STATE: 'pomodoro-state',
     SEC: 'pomodoro-seconds',
+    COUNT: 'pomodoro-count',
 }
 
 const Default = {
@@ -22,7 +25,8 @@ const Default = {
         POMODORO: '1800',
         SHORT_BREAK: '300',
         LONG_BREAK: '900',
-    }
+    },
+    COUNT: 0
 }
 
 const secToStr = (seconds) => {
@@ -34,36 +38,22 @@ const secToStr = (seconds) => {
 var app = angular.module('popupApp', []);
 app.controller('popupCtrl', function ($scope) {
     $scope.timerDisplay = '--:--';
+    $scope.totalPerDay = totalPerDay;
 
-    $scope.initialize = () => {
-        chrome.storage.local.get([StorageKey.MODE, StorageKey.STATE, StorageKey.SEC], (result) => {
-            const mode = result[StorageKey.MODE] || Default.MODE;
-            const state = result[StorageKey.STATE] || Default.STATE;
-            const sec = parseInt(result[StorageKey.SEC] || Default.SEC.POMODORO);
-            
-            const syncTimer = () => {
-                chrome.storage.local.get([StorageKey.SEC], (result) => {
-                    $scope.sec = parseInt(result[StorageKey.SEC]);
-                    $scope.timerDisplay = secToStr($scope.sec);
-                    $scope.$apply();
-                });
-            }
-            
-            const values = {
-                [StorageKey.MODE]: mode,
-                [StorageKey.STATE]: state,
-                [StorageKey.SEC]: sec
-            };
-            
-            chrome.storage.local.set(values, () => {
-                $scope.mode = mode;
-                $scope.state = state;
-                $scope.sec = sec;
-                $scope.timerDisplay = secToStr($scope.sec);
-                $scope.$apply();
-                setInterval(syncTimer, 250);
-            });
+    const scopeSync = () => {
+        chrome.storage.local.get([StorageKey.MODE, StorageKey.STATE, StorageKey.SEC, StorageKey.COUNT], (result) => {
+            $scope.mode = result[StorageKey.MODE];
+            $scope.state = result[StorageKey.STATE];
+            $scope.count = result[StorageKey.COUNT];
+            $scope.sec = result[StorageKey.SEC];
+            $scope.timerDisplay = secToStr($scope.sec);
+            $scope.$apply();
         });
+    }
+    
+    $scope.initialize = () => {
+        scopeSync();
+        setInterval(scopeSync, 250);
     }
 
     $scope.changeMode = (mode) => {
