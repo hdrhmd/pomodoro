@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/pages/lib/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Extension</title>
+</head>
+
+<body ng-app="popupApp" ng-controller="popupCtrl" ng-init="initialize()">
+    <div class="container">
+        <ul class="nav nav-pills nav-justified">
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-ng-class="{'active': mode == 'pomodoro'}"
+                    ng-click="changeMode('pomodoro')">Pomodoro</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-ng-class="{'active': mode == 'short-break'}"
+                    ng-click="changeMode('short-break')">Short Break</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-ng-class="{'active': mode == 'long-break'}"
+                    ng-click="changeMode('long-break')">Long Break</a>
+            </li>
+        </ul>
+        <h1 class="display-1 text-center">{{timerDisplay}}</h1>
+        <div class="row">
+            <div class="col text-center">
+                <button class="btn btn-primary" style="padding-left: 50px; padding-right: 50px;"
+                    ng-click='toggleState()'>{{state == 'running' ? 'STOP' : 'START'}}</button>
+            </div>
+        </div>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" ng-style="{'width' : (count*100/totalPerDay) + '%'}">{{count}}
+                / {{totalPerDay}}</div>
+        </div>
+    </div>
+
+    {{test}}
+
+    <script src="/pages/lib/js/jquery.min.js"></script>
+    <script src="/pages/lib/js/popper.min.js"></script>
+    <script src="/pages/lib/js//bootstrap.min.js"></script>
+    <script src="/pages/lib/js//angular.min.js"></script>
+    <script src="/pages/lib/js/moment.min.js"></script>
+    <script src="angular-app.js" charset="UTF-8"></script>
+</body>
+
+</html>

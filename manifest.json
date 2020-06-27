@@ -4,16 +4,22 @@
     "manifest_version": 2,
     "content_scripts": [
       {
-        "matches": ["<all_urls>"],
-        "css":["/lib/css/bootstrap.min.css"],
+        "matches": [
+          "https://www.facebook.com/*",
+          "https://www.youtube.com/*",
+          "https://twitter.com/*",
+          "https://www.amazon.com/*",
+          "<all_urls>"
+        ],
+        // "css":["/lib/css/bootstrap.min.css"],
         "js": [
-          "/lib/js/jquery.min.js",
-          "content.js"
+          "pages/lib/js/jquery.min.js",
+          "scripts/content.js"
         ]
       }
     ],
     "browser_action": {
-      "default_popup": "popup.html",
+      "default_popup": "/pages/popup/index.html",
       "default_title": "Pomodoro"
     },
     "permissions": [
@@ -21,8 +27,8 @@
     ],
     "background": {
       "scripts": [
-        "/lib/js/moment.min.js",
-        "background.js"
+        "pages/lib/js/moment.min.js",
+        "scripts/background.js"
       ]
     },
     "icons": {
@@ -31,6 +37,6 @@
      "128": "/assets/ico/icon128.png"
     },
     "web_accessible_resources": [
-      "popup.html", "blocked.html"
+      "/pages/*"
     ]
   }
