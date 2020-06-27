@@ -37,6 +37,6 @@
      "128": "/assets/ico/icon128.png"
     },
     "web_accessible_resources": [
-      "/pages/*"
+      "/pages/blocked.html", "/pages/iframe/index.html"
     ]
   }

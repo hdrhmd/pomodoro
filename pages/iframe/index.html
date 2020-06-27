@@ -12,7 +12,7 @@
 </head>
 
 <body ng-app="iframeApp" ng-controller="iframeCtrl" ng-init="initialize()">
-    <div class="progress" style="height: 10px; border-radius: 0px">
+    <div class="progress" style="height: 20px; border-radius: 0px">
         <div ng-if="state == 'idle'" class="progress-bar" ng-class="blinkColor" role="progressbar" style="width: 100%;"
             aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">{{displayString}}</div>
         <div ng-if="state == 'running'" class="progress-bar" role="progressbar" ng-style="{'width' : (sec * 100 / totalSec) + '%'}">
