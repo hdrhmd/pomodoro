@@ -69,6 +69,7 @@ app.controller('iframeCtrl', function ($scope) {
         setInterval(scopeSync, 1000);
         setInterval(() => {
             $scope.blinkColor = $scope.blinkColor == 'bg-danger' ? 'bg-warning' : 'bg-danger';
+            $scope.$apply();
         }, 500);
     }
 });
