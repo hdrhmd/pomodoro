@@ -47,7 +47,7 @@ setInterval(() => {
                     [StorageKey.MODE]: Default.MODE,
                     [StorageKey.STATE]: Default.STATE,
                     [StorageKey.SEC]: Default.SEC.POMODORO,
-                    [StorageKey.COUNT]: result[StorageKey.COUNT] + 1
+                    [StorageKey.COUNT]: result[StorageKey.MODE] == Mode.POMODORO ? result[StorageKey.COUNT] + 1 : result[StorageKey.COUNT]
                 });
             } else {
                 chrome.storage.local.set({[StorageKey.SEC]: Math.max(0, result[StorageKey.SEC] - 1)});

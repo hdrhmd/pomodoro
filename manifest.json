@@ -5,7 +5,11 @@
     "content_scripts": [
       {
         "matches": ["<all_urls>"],
-        "js": ["content.js"]
+        "css":["/lib/css/bootstrap.min.css"],
+        "js": [
+          "/lib/js/jquery.min.js",
+          "content.js"
+        ]
       }
     ],
     "browser_action": {
@@ -13,12 +17,20 @@
       "default_title": "Pomodoro"
     },
     "permissions": [
-      "storage"
+      "storage", "background", "tabs", "webRequest", "webRequestBlocking", "*://*/*"
     ],
     "background": {
       "scripts": [
         "/lib/js/moment.min.js",
         "background.js"
       ]
-    }
+    },
+    "icons": {
+      "16": "/assets/ico/icon16.png",
+      "48": "/assets/ico/icon48.png",
+     "128": "/assets/ico/icon128.png"
+    },
+    "web_accessible_resources": [
+      "popup.html", "blocked.html"
+    ]
   }
