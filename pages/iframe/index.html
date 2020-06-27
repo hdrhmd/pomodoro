@@ -11,10 +11,12 @@
     <title>Progress</title>
 </head>
 
-<body>
-    <div class="progress" style="height: 10px;">
-        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0"
-            aria-valuemax="100"></div>
+<body ng-app="iframeApp" ng-controller="iframeCtrl" ng-init="initialize()">
+    <div class="progress" style="height: 10px; border-radius: 0px">
+        <div ng-if="state == 'idle'" class="progress-bar" ng-class="blinkColor" role="progressbar" style="width: 100%;"
+            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">{{displayString}}</div>
+        <div ng-if="state == 'running'" class="progress-bar" role="progressbar" ng-style="{'width' : (sec * 100 / totalSec) + '%'}">
+            {{displayString}}</div>
     </div>
 
     <script src="/pages/lib/js/jquery.min.js"></script>
@@ -22,6 +24,7 @@
     <script src="/pages/lib/js//bootstrap.min.js"></script>
     <script src="/pages/lib/js//angular.min.js"></script>
     <script src="/pages/lib/js/moment.min.js"></script>
+    <script src="angular-app.js" charset="UTF-8"></script>
 </body>
 
 </html>

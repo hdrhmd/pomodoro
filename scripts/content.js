@@ -9,5 +9,5 @@ $(document).ready(() => {
         window.location.href = chrome.extension.getURL("/pages/blocked.html");
     }
     const src = chrome.extension.getURL("/pages/iframe/index.html");
-    $('body').prepend(`<iframe src="${src}" width="100%" height="10px" frameBorder="0px"></iframe>`);
+    $('body').prepend(`<iframe src="${src}" width="100%" height="10px" frameBorder="0px" style="display: inherit;"></iframe>`);
 });
