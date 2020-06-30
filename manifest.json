@@ -11,6 +11,10 @@
           "https://www.amazon.com/*",
           "<all_urls>"
         ],
+        "exclude_matches": [
+        	"http://localhost:4200/*",
+        	"https://getbootstrap.com/*"
+        ],
         // "css":["/lib/css/bootstrap.min.css"],
         "js": [
           "pages/lib/js/jquery.min.js",
