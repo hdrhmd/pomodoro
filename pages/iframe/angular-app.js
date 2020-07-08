@@ -59,6 +59,19 @@ app.controller('iframeCtrl', function ($scope) {
                 $scope.displayString = progressString;
             }
 
+            if ($scope.count < $scope.totalPerDay) {
+                var secRemaining = ($scope.totalPerDay - $scope.count - 1) * Default.SEC.POMODORO * 1.5;
+                if ($scope.mode == Mode.POMODORO) {
+                    secRemaining += $scope.sec - 0;
+                } else {
+                    secRemaining += Default.SEC.POMODORO - 0;
+                }
+                var date = Date.now() + secRemaining * 1000;
+                var exploded = new Date(date).toLocaleTimeString().split(' ');
+                var time = exploded[0].split(':').slice(0, 2).join(':') + exploded[1];
+                // date = [new Date(date), new Date(date).toLocaleTimeString(), time].join(' ');
+                $scope.displayString += ' - ' + time;
+            }
 
             $scope.$apply();
         });
