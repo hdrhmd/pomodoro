@@ -50,11 +50,11 @@ app.controller('iframeCtrl', function ($scope) {
             $scope.count = result[StorageKey.COUNT];
             $scope.sec = result[StorageKey.SEC];
             
-            const progressString = $scope.count + ' / ' + $scope.totalPerDay;
+            const progressString = $scope.count + '/' + $scope.totalPerDay;
 
             if ($scope.sec > 0) {
                 $scope.totalSec = $scope.mode == 'pomodoro' ? Default.SEC.POMODORO : ($scope.mode == 'short-break' ? Default.SEC.SHORT_BREAK : Default.SEC.LONG_BREAK);
-                $scope.displayString = secToStr($scope.sec) + ' [' + progressString + ']';
+                $scope.displayString = secToStr($scope.sec) + '  ~  ' + progressString;
             } else {
                 $scope.displayString = progressString;
             }
@@ -70,7 +70,7 @@ app.controller('iframeCtrl', function ($scope) {
                 var exploded = new Date(date).toLocaleTimeString().split(' ');
                 var time = exploded[0].split(':').slice(0, 2).join(':') + exploded[1];
                 // date = [new Date(date), new Date(date).toLocaleTimeString(), time].join(' ');
-                $scope.displayString += ' - ' + time;
+                $scope.displayString += '  ~  ' + time;
             }
 
             $scope.$apply();
