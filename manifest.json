@@ -13,7 +13,18 @@
         ],
         "exclude_matches": [
         	"http://localhost:4200/*",
-        	"https://getbootstrap.com/*"
+          "https://getbootstrap.com/*",
+          "https://quip-amazon.com/*",
+          "https://sim.amazon.com/*",
+          "https://issues.amazon.com/*",
+          "https://tortuga.amazon.com/*",
+          "https://frpg-operations.amazon.com/*",
+          "https://infosec.thinkingcap.com/*",
+          "https://search.google.com/search-console*",
+          "https://analytics.google.com/*",
+          "https://vendisto.amazon.com/*",
+          "https://discourse.org/*",
+          "https://meta.discourse.org/*"
         ],
         // "css":["/lib/css/bootstrap.min.css"],
         "js": [

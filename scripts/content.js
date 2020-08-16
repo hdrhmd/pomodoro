@@ -13,14 +13,27 @@ const StorageKey = {
 }
 
 $(document).ready(() => {
-    if (blacklist.filter(w => window.location.origin.includes(w)).length > 0) {
-        chrome.storage.local.get([StorageKey.COUNT], (result) => {
-            if (result[StorageKey.COUNT] < 10) {
+    chrome.storage.local.get([StorageKey.COUNT], (result) => {
+        if (result[StorageKey.COUNT] < 10) {
+            if (blacklist.filter(w => window.location.origin.includes(w)).length > 0) {
                 window.location.href = chrome.extension.getURL("/pages/blocked.html");
+            } else {
+                var height = '20px';
+                var iframe = document.createElement('iframe');
+                iframe.src = chrome.extension.getURL('/pages/iframe/index.html');
+                iframe.style.height = height;
+                iframe.style.width = '100%';
+                iframe.style.position = 'fixed';
+                iframe.style.top = '0';
+                iframe.style.left = '0';
+                iframe.style.border = '0px';
+                iframe.style.zIndex = '938089'; // Some high value
+                // Etc. Add your own styles if you want to
+                document.documentElement.appendChild(iframe);
+                var bodyStyle = document.body.style;
+                var cssTransform = 'transform' in bodyStyle ? 'transform' : 'webkitTransform';
+                bodyStyle[cssTransform] = 'translateY(' + height + ')';
             }
-        });
-    } else {
-        const src = chrome.extension.getURL("/pages/iframe/index.html");
-        $('body').prepend(`<iframe src="${src}" width="100%" height="20px" frameBorder="0px" style="display: inherit;"></iframe>`);
-    }
+        }
+    });
 });
