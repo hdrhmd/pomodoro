@@ -8,8 +8,7 @@
           "https://www.facebook.com/*",
           "https://www.youtube.com/*",
           "https://twitter.com/*",
-          "https://www.amazon.com/*",
-          "<all_urls>"
+          "https://code.amazon.com/*"
         ],
         "exclude_matches": [
         	"http://localhost:4200/*",
